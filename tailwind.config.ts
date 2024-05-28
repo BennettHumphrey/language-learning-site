@@ -7,14 +7,29 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+    screens: {
+      // xxsm: '365px',
+      xsm: '480px',
+      sm: '550px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
     },
+    extend: {
+      // https://coolors.co/3a015c-987284-35012c-eadeda-11001c
+      colors: {
+        'main': '#35012C', //Dark Purple
+        'accent': '#987284', //Aqua
+        'menu': '#3A015C', //Accent but a bit darker
+        'text-dark': '#11001C',
+        'text': '#EADEDA', //Essencially white
+        'line': 'black',
+      },
+      height: {
+        'screen-width': '100vw'
+      }
   },
-  plugins: [],
+},
+  plugins: [require('daisyui')],
 };
 export default config;
