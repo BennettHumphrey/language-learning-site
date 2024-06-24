@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
-import NavMenu from "@/components/NavMenu";
+import NavMenu from "@/components/Nav/NavMenu";
 import SessionProvider from "@/components/SessionProvider";
+import SessionInfo from "@/components/SessionInfo";
+import Recoil from "./utils/Recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,15 +22,20 @@ export default async function RootLayout({
 
   const session = await getServerSession();
 
+  
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session} >
-          <main className="mx-auto text-2xl gap-2 text-text-light bg-main">
-            <NavMenu  />
-            {children}
-          </main>
-        </SessionProvider>
+          <SessionProvider session={session} >
+            <Recoil  >
+              <SessionInfo  />
+              <main className="mx-auto text-2xl gap-2 text-text-light bg-main">
+                <NavMenu  />
+                {children}
+              </main>
+            </Recoil>
+          </SessionProvider>
       </body>
     </html>
   );

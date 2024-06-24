@@ -1,5 +1,6 @@
+"use client"
+
 import React, { useState } from 'react'
-import CardsDropdown from './CardModeDropdown'
 import { CardsProps } from '@/app/types'
 
 // TODO: 

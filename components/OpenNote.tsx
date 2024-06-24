@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 interface Note {
   title: string;
@@ -12,11 +12,9 @@ interface OpenNoteProps {
 const OpenNote: React.FC<OpenNoteProps> = ({ note }) => {
   return (
     <div>
-      <textarea className='textarea'
-        defaultValue={note.text}
-      />
+      <textarea className="textarea textarea-ghost text-center focus:bg-accent focus:text-text" defaultValue={note.text} />
     </div>
-  )
-}
+  );
+};
 
-export default OpenNote
+export default OpenNote;

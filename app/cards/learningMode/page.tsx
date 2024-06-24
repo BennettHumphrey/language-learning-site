@@ -1,5 +1,6 @@
+"use client"
+
 import React from 'react'
-import CardsDropdown from './CardModeDropdown'
 import { CardsProps } from '@/app/types'
 
 const LearningModeCards: React.FC<CardsProps> = ({  }) => {

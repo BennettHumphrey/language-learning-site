@@ -8,7 +8,7 @@ export const navOptions = [
         title: 'Notes',
     },
     {
-        href: '/cards',
+        href: '/cards/learningMode',
         title: 'Cards',
     },
 

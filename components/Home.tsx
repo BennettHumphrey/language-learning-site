@@ -4,7 +4,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div className='flex flex-col items-center justify-center gap-10 p-12 bg-main h-[calc(100vh-60px)]'>
-      <Link href={'/cards'}>
+      <Link href={'/cards/learningMode'}>
         <div className='bg-accent text-center p-6 max-w-[250px]'>
           <h2>
             Cards

@@ -5,8 +5,9 @@
 import React, { useEffect, useState } from 'react'
 import DesktopNav from './DesktopNav'
 import { useWindowSize } from 'react-use'
-import MobileNav from './MobileNav/MobileNav'
+import MobileNav from './MobileNav'
 import { useSession } from 'next-auth/react'
+import NavPlaceholder from './NavPlaceholder'
 
 
 
@@ -27,7 +28,7 @@ const NavMenu = () => {
     }, []);
   
     if (!isClient) {
-      return null;
+      return <NavPlaceholder  />;
     }
 
     
