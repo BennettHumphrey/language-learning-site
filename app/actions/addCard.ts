@@ -1,26 +1,28 @@
 'use server'
 
 import { usePrismaClient } from "@/prisma/prismaClient"
-import { revalidatePath } from "next/cache"
 
 
 
 
-export async function addCard(userId: string, cardSetTitle: string) {
+export async function addCard(sourceLanguageContent: string, targetLanguageContent:string, flashcardSetTitle: string) {
 
-    if (typeof cardSetTitle !== 'string') {
+    if (typeof flashcardSetTitle !== 'string') {
       throw new Error('Invalid form data: title must be a string');
     }
 
-    const user = await usePrismaClient().flashcard.create({
+    // console.log('flashcardSetTitle in addCard.ts:', flashcardSetTitle)
+    // console.log('sourceLanguageContent in addCard.ts:', sourceLanguageContent)
+    // console.log('targetLanguageContent in addCard.ts:', targetLanguageContent)
+
+    const newCard = await usePrismaClient().flashcard.create({
         data: {
-            sourceLanguageContent: '',
-            targetLanguageContent: '',
-            flashcardSetTitle: ''
+            sourceLanguageContent: sourceLanguageContent,
+            targetLanguageContent: targetLanguageContent,
+            flashcardSetTitle: flashcardSetTitle
         },
       })
 
- 
+      console.log('newCard in addCard.ts:', newCard)
 
-    revalidatePath('/cards')
   }

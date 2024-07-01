@@ -6,46 +6,40 @@ import SubmitButton from '@/app/utils/SubmitButton'
 import { addCardSet } from '@/app/actions/addCardSet'
 import { useSession } from 'next-auth/react'
 import { useRecoilValue } from 'recoil'
-import { currentUserIdState } from '@/app/utils/Recoil'
+import { cardSetState, currentUserIdState } from '@/app/utils/Recoil'
 import { addCard } from '@/app/actions/addCard'
 
 // TODO:
-  // Dropdown to create new card set
 
-
-  // Server action that adds new cards
-    // Gets the current card group (props?) and adds to that
-
-  // Add card sets to DB
-    // Prisma server action in addCards
-  
   // Delete card sets from DB
     // New button on "Change set" 
       // Trash can icon, with modal pop-up to confirm
     // Prisma server action to delete
 
 
-
-
-
-
 const AddCards: React.FC<CardsProps> = () => {
   
   
-
   const [addNewSet, setAddNewSet] = useState(false)
+
   const [cardSetTitle, setCardSetTitle] = useState('');
+
   const [cardSourceLanguageContent, setCardSourceLanguageContent] = useState('');
   const [cardTargetLanguageContent, setCardTargetLanguageContent] = useState('');
 
 
   const currentUser = useRecoilValue(currentUserIdState)
+  const cardSet = useRecoilValue(cardSetState)
 
   const session = useSession()
   
   useEffect(() => {
     console.log(session.data)
   }, [session])
+  
+  useEffect(() => {
+    console.log('cardSetTitle in cards/addCards/page.tsx:', cardSetTitle)
+  }, [cardSetTitle])
   
   
 
@@ -56,14 +50,15 @@ const AddCards: React.FC<CardsProps> = () => {
       <button className='btn bg-menu text-text'
         onClick={() => setAddNewSet((prev) => !prev)}
       >{addNewSet ? "Add New Cards":"Add New Card Set"}</button>
-      {/* Add set section */}
+
       {
         
         addNewSet ? 
         <form 
-          onSubmit={() => {
-            setCardSetTitle('')
-            addCardSet(currentUser, cardSetTitle)
+          onSubmit={(e) => {
+            e.preventDefault();
+            addCardSet(currentUser, cardSetTitle);
+            setCardSetTitle('');
           }}
           className='flex flex-col items-center justify-evenly h-full'>
           <div className='flex flex-col gap-3 justify-center items-center'>
@@ -80,7 +75,14 @@ const AddCards: React.FC<CardsProps> = () => {
           :
 
         <form className='w-4/5 h-full flex flex-col items-center justify-evenly' 
-            // onSubmit={() => addCard(currentUser, currentCardSetId, cardTargetLanguageContent, cardSourceLanguageContent)}
+            onSubmit={
+              (e) => {
+                e.preventDefault();
+                addCard(cardSourceLanguageContent, cardTargetLanguageContent, cardSet);
+                setCardSourceLanguageContent('');
+                setCardTargetLanguageContent('');
+              }
+            }
         >
           <p className='text-sm w-full'>Target Language Content</p>
           <textarea 

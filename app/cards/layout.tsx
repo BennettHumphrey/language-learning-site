@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CardModeDropdown from '@/components/cardsComponents/CardModeDropdown'
 import CardSetDropdown from '@/components/cardsComponents/CardSetDropdown'
 
@@ -11,14 +11,12 @@ const layout = ({
   }) => {
 
     const [mode, setMode] = useState("Learning Mode")
-    const [cardSet, setCardSet] = useState("Loading...")
   
     useEffect(() => {
-      console.log('mode in cards/page.tsx:', mode)
+      console.log('mode in cards/layout.tsx:', mode)
     }, [mode])
-    useEffect(() => {
-      console.log('cardSet in cards/page.tsx:', cardSet)
-    }, [cardSet])
+
+    layout
 
     
 
@@ -31,7 +29,7 @@ const layout = ({
       <div  className='bg-accent w-[80vw] h-[80vh] max-w-[600px] max-h-[600px] text-center flex flex-col items-center justify-center gap-6 py-4'>
         <div className='w-full flex items-center justify-evenly px-1'>
           <CardModeDropdown setMode={setMode} />
-          <CardSetDropdown setCardSet={setCardSet} />
+          <CardSetDropdown />
         </div>
         <div className='w-full h-full'>
             {children}
