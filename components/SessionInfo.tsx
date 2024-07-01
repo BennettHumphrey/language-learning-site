@@ -26,7 +26,7 @@ const SessionInfo = () => {
 
   
   useEffect(() => {
-    console.log(session)
+    console.log('session in SessionInfo.tsx:', session)
   }, [session])
 
 

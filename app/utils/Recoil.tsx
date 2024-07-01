@@ -19,6 +19,11 @@ interface RecoilProps {
     default: 'Loading...'
   });
   
+  export const currentCardsState = atom({
+    key: 'currentCards', 
+    default: []
+  });
+  
   
   
   const Recoil: FC<RecoilProps> = ({children}) => {

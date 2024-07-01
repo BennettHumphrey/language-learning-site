@@ -29,10 +29,10 @@ export const addUser = async (user:User) => {
             }
         })
         // Set createdUser to existingUser if not previously existing
-        console.log(`Created new user ${user.name}:`, JSON.stringify(existingUser))
+        // console.log(`Created new user ${user.name}:`, JSON.stringify(existingUser))
     }
 
-    console.log('addUser existingUser:', JSON.stringify(existingUser))
+    // console.log('addUser existingUser:', JSON.stringify(existingUser))
     return existingUser;
 }
 

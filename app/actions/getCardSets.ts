@@ -15,7 +15,7 @@ export const getCardSets = async(userId:string) => {
             title: true
         }
     })
-    console.log(cardSets)
+    console.log('cardSets in getCardSets:', cardSets)
     return cardSets
 }
 

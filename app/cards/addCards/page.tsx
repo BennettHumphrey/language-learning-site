@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react'
 import { useRecoilValue } from 'recoil'
 import { cardSetState, currentUserIdState } from '@/app/utils/Recoil'
 import { addCard } from '@/app/actions/addCard'
+import { usePathname } from 'next/navigation'
 
 // TODO:
 
@@ -32,9 +33,10 @@ const AddCards: React.FC<CardsProps> = () => {
   const cardSet = useRecoilValue(cardSetState)
 
   const session = useSession()
+
   
   useEffect(() => {
-    console.log(session.data)
+    console.log('session.data in addCards/page.tsx:', session.data)
   }, [session])
   
   useEffect(() => {

@@ -1,21 +1,35 @@
 "use client"
 
-import { CardsProps } from '@/app/types'
+import { getFirstTenCards } from '@/app/actions/getFirstTenCards';
+import { getDataArray } from '@/app/utils/getDataArray';
+import { cardSetState } from '@/app/utils/Recoil';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react'
+import { useRecoilValue } from 'recoil';
 
 
 interface Props {
-  setMode: (newValue: string) => void;
+  setCurrentCards: (newValue: string) => void;
 }
 
 
-const CardModeDropdown: React.FC<Props> = ({ setMode }) => {
+const CardModeDropdown: React.FC<Props> = ({ setCurrentCards }) => {
 
   // const [client, setClient] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const dropdownRef = useRef<HTMLDetailsElement>(null)
+
+  const currentPath = usePathname()
+
+  const cardSet = useRecoilValue(cardSetState)
+
+  useEffect(() => {
+    console.log('currentPath in CardModeDropdown.tsx:', currentPath)
+  }, [currentPath])
+  
 
   // To confirm that client is being used (removable?)
   // useEffect(() => {
@@ -23,7 +37,9 @@ const CardModeDropdown: React.FC<Props> = ({ setMode }) => {
   // }, [])
 
   const handleClick = (mode:string) => {
-    setMode(mode)
+    if(currentPath === '/cards/addCards' && mode !== 'Add New Cards') {
+      getDataArray(setCurrentCards, getFirstTenCards, [cardSet])
+    }
   } 
 
   // useEffect(() => {
@@ -79,7 +95,7 @@ const CardModeDropdown: React.FC<Props> = ({ setMode }) => {
           <ul className="p-2 shadow menu dropdown-content z-[2] bg-base-100 rounded-box w-52">
             {modes.map(mode => (
               // <li key={mode} onClick={() => handleClick(mode)} >{mode}</li>
-              <Link key={mode.href} href={mode.href} >{mode.title}</Link>
+              <Link onClick={() => handleClick(mode.title)} key={mode.href} href={mode.href} >{mode.title}</Link>
             ))}
           </ul>
         </details>

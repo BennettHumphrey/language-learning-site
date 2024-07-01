@@ -38,16 +38,22 @@ const CardSetDropdown:React.FC = () => {
     } 
 
     useEffect(() => {
-      if(dropdownOpen) getDataArray(setSets, getCardSets, [currentUser])
+      currentUser && dropdownOpen && getDataArray(setSets, getCardSets, [currentUser])
     }, [dropdownOpen])
+
+    useEffect(() => {
+      currentUser && getDataArray(setSets, getCardSets, [currentUser])
+    }, [currentUser])
+
+
     
     useEffect(() => {
       console.log('cardSet in CardSetDropdown:', cardSet)
     }, [cardSet])
     
     useEffect(() => {
-      setCardSet(sets[0]?.title)
-    }, [sets])
+      if(cardSet === 'Loading...') setCardSet(sets[0]?.title)
+    }, [sets, currentUser])
 
     const handleDropdownClick = () => {        
         
