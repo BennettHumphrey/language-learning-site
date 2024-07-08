@@ -4,7 +4,7 @@ import { usePrismaClient } from "@/prisma/prismaClient"
 
 
 
-export const getFirstTenCards = async(flashcardSetTitle:string) => {
+export const getTenCards = async(flashcardSetTitle:string, first:boolean) => {
     const cards = await usePrismaClient().flashcard.findMany({
         where: {
             flashcardSetTitle: {
@@ -18,7 +18,7 @@ export const getFirstTenCards = async(flashcardSetTitle:string) => {
         take:10
 
     })
-    console.log('cards in getFirstTenCards:', cards)
+    console.log('cards in getTenCards:', cards)
     return cards
 }
 

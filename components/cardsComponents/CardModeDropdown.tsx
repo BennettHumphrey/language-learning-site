@@ -1,24 +1,23 @@
 "use client"
 
-import { getFirstTenCards } from '@/app/actions/getFirstTenCards';
+import { getTenCards } from '@/app/actions/getTenCards';
 import { getDataArray } from '@/app/utils/getDataArray';
-import { cardSetState } from '@/app/utils/Recoil';
+import { cardSetState, currentCardsState } from '@/app/utils/Recoil';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation'; 
 import React, { useEffect, useRef, useState } from 'react'
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 
-interface Props {
-  setCurrentCards: (newValue: string) => void;
-}
 
 
-const CardModeDropdown: React.FC<Props> = ({ setCurrentCards }) => {
+
+const CardModeDropdown: React.FC = () => {
 
   // const [client, setClient] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const [currentCards, setCurrentCards] = useRecoilState(currentCardsState)
 
   const dropdownRef = useRef<HTMLDetailsElement>(null)
 
@@ -29,16 +28,10 @@ const CardModeDropdown: React.FC<Props> = ({ setCurrentCards }) => {
   useEffect(() => {
     console.log('currentPath in CardModeDropdown.tsx:', currentPath)
   }, [currentPath])
-  
-
-  // To confirm that client is being used (removable?)
-  // useEffect(() => {
-  //   setClient(true)
-  // }, [])
 
   const handleClick = (mode:string) => {
     if(currentPath === '/cards/addCards' && mode !== 'Add New Cards') {
-      getDataArray(setCurrentCards, getFirstTenCards, [cardSet])
+      getDataArray(setCurrentCards, getTenCards, [cardSet])
     }
   } 
 

@@ -8,6 +8,13 @@ interface RecoilProps {
     // other props
   }
 
+type DefaultCard = {
+    targetLanguageContent: string;
+    sourceLanguageContent: string;
+};
+
+
+
 
   export const currentUserIdState = atom({
     key: 'currentUserId', 
@@ -21,7 +28,17 @@ interface RecoilProps {
   
   export const currentCardsState = atom({
     key: 'currentCards', 
-    default: []
+    default: [] as DefaultCard[]
+  });
+
+  export const nextCardsState = atom({
+    key: 'nextCards', 
+    default: [] as DefaultCard[] 
+  });
+  
+  export const currentCardNumberInArrayState = atom({
+    key: 'currentCardNumberInArray', 
+    default: 0
   });
   
   

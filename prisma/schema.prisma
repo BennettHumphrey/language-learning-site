@@ -94,12 +94,13 @@ model FlashcardSet {
 model Flashcard {
   // Parent
   id           String       @id @default(cuid())
-  flashcardSet FlashcardSet @relation(fields: [flashcardSetTitle], references: [title])
+  flashcardSet FlashcardSet @relation(fields: [flashcardSetTitle], references: [title], onDelete: Cascade)
   flashcardSetTitle  String
 
   // Fields
   targetLanguageContent String
   sourceLanguageContent String
   createdAt             DateTime @default(now())
+  nextCompletion           DateTime
   consecutiveSuccesses  Int?
 }
