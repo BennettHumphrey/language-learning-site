@@ -16,9 +16,10 @@ export async function completeCard(card:Flashcard, success:boolean=false) {
         throw new Error("Card ID is undefined");
     }
 
-    const generateNextCompletion = (consecutiveSuccesses:number) => {
+    const generateNextCompletion = (consecutiveSuccesses:number, success:boolean) => {
         let days = 0
 
+        let date = new Date()
 
 
         switch(consecutiveSuccesses) {
@@ -36,9 +37,12 @@ export async function completeCard(card:Flashcard, success:boolean=false) {
             default: days = 365*2; break;
         }
 
-        let date = new Date()
         // date.setMinutes(date.getMinutes() + days)
-        days === 0 ? date.setMinutes(date.getMinutes() + 5) : date.setDate(date.getDate() + days)
+        if(success === false || days === 0) {
+            date.setMinutes(date.getMinutes() + 3)
+        } else {
+            date.setDate(date.getDate() + days)
+        }
         return date
     }
 
@@ -49,7 +53,7 @@ export async function completeCard(card:Flashcard, success:boolean=false) {
             id: card.id
         },
         data: {
-            nextCompletion: generateNextCompletion(card.consecutiveSuccesses),
+            nextCompletion: (generateNextCompletion(card.consecutiveSuccesses, success)),
             consecutiveSuccesses: (success ? card.consecutiveSuccesses + 1 : 0),
         },
       })
