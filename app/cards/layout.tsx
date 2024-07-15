@@ -25,6 +25,15 @@ const layout = ({
       console.log('currentCards in cards/layout.tsx', JSON.stringify(currentCards))
     }, [currentCards])
 
+
+    // const currentDate = new Date()
+    // const weekFromNow = new Date()
+    // weekFromNow.setDate(weekFromNow.getDate() + 7)
+
+    // console.log('currentDate in cards layout:', currentDate)
+    // console.log('weekFromNow in cards layout:', weekFromNow)
+    // console.log('currentDate.getTime() in cards layout:', currentDate.getTime())
+    // console.log('weekFromNow.getTime() in cards layout:', weekFromNow.getTime())
     
 
   return (

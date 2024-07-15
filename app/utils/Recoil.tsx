@@ -9,8 +9,13 @@ interface RecoilProps {
   }
 
 type DefaultCard = {
+    id: string;
+    flashcardSetTitle: string;
     targetLanguageContent: string;
     sourceLanguageContent: string;
+    createdAt: Date;
+    nextCompletion: Date;
+    consecutiveSuccesses: number;
 };
 
 

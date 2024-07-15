@@ -102,5 +102,5 @@ model Flashcard {
   sourceLanguageContent String
   createdAt             DateTime @default(now())
   nextCompletion           DateTime
-  consecutiveSuccesses  Int?
+  consecutiveSuccesses  Int @default(0)
 }

@@ -4,18 +4,21 @@ import { usePrismaClient } from "@/prisma/prismaClient"
 
 
 
-export const getTenCards = async(flashcardSetTitle:string, first:boolean) => {
+export const getTenCards = async(flashcardSetTitle:string, first:boolean=false) => {
+
+    const currentDate = new Date()
+
     const cards = await usePrismaClient().flashcard.findMany({
         where: {
             flashcardSetTitle: {
                 equals: flashcardSetTitle
+            },
+            nextCompletion: {
+                lte: currentDate
             }
         },
-        select: {
-            targetLanguageContent: true,
-            sourceLanguageContent: true
-        },
-        take:10
+        take:10,
+        skip:(first ? 0 : 1)
 
     })
     console.log('cards in getTenCards:', cards)
