@@ -1,0 +1,31 @@
+-setOpenColorPicker needs to be in a setTimeout to delay it
+or it doesn't run
+What the fuck?
+
+
+
+
+-setPreviousCardSet
+    -A good way to do it or shit because 2 queries
+        -Should have organized within the URL cards/user/cardSet
+
+-multipleChoiceMode page.tsx
+    -Lacking a lot of abstraction or acceptable? (feels fucked)
+        -Only moderately fucked
+
+-NextCards system
+    -Good optimization? (Seems aight?)
+
+-General file layout
+    -Better way?
+        -Dashes not camel-case
+    
+
+
+-Use scaling multiplier for spaced rep?
+
+
+
+-IMPROVE:   DB efficiency
+            Naming
+            Comments
