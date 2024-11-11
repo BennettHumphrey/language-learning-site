@@ -1,6 +1,6 @@
 'use server'
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 
 
 
@@ -26,7 +26,7 @@ export async function addCard(sourceLanguageContent: string, targetLanguageConte
 
     const currentDate = new Date()
 
-    const newCard = await usePrismaClient().flashcard.create({
+    const newCard = await prismaClient().flashcard.create({
         data: {
             sourceLanguageContent: sourceLanguageContent,
             targetLanguageContent: targetLanguageContent,

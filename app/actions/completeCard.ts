@@ -1,6 +1,6 @@
 'use server'
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 import { Flashcard } from "@prisma/client"
 
 
@@ -46,7 +46,7 @@ export async function completeCard(card:Flashcard, success:boolean=false) {
 
     // console.log("generateNextCompletion in completeCard.ts:", (generateNextCompletion(success ? card.consecutiveSuccesses : 0)))
 
-    const updateCard = await usePrismaClient().flashcard.update({
+    const updateCard = await prismaClient().flashcard.update({
         where: {
             id: card.id
         },

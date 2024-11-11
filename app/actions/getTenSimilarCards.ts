@@ -1,6 +1,6 @@
 "use server";
 
-import { usePrismaClient } from "@/prisma/prismaClient";
+import { prismaClient } from "@/prisma/prismaClient";
 
 export const getTenSimilarCards = async (
   flashcardSetTitle: string,
@@ -9,7 +9,7 @@ export const getTenSimilarCards = async (
   console.log(
     `params in getTenSimilarCards: flashcardSetTitle: ${flashcardSetTitle}, targetTerm: ${targetTerm}`
   );
-  const flashcards = await usePrismaClient().$queryRaw`
+  const flashcards = await prismaClient().$queryRaw`
         SELECT *
           FROM "Flashcard"
           WHERE "flashcardSetTitle" = ${flashcardSetTitle}

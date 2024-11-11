@@ -22,7 +22,7 @@ const NotesPage = () => {
   return (
     <div className="h-[calc(100vh-60px)] w-full bg-main flex flex-col p-10 items-center justify-evenly">
       {notes.map((note, i) => (
-        <div className="text-center flex flex-col gap-2">
+        <div key={i} className="text-center flex flex-col gap-2">
           <div className="flex justify-center items-center">
             <h2>{note.title}</h2>
           </div>

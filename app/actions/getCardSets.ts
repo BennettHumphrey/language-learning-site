@@ -1,11 +1,11 @@
 "use server"
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 
 
 
 export const getCardSets = async(userId:string) => {
-    const cardSets = await usePrismaClient().flashcardSet.findMany({
+    const cardSets = await prismaClient().flashcardSet.findMany({
         where: {
             authorId: {
                 equals: userId

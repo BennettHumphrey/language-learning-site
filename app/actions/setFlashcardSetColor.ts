@@ -1,6 +1,6 @@
 'use server'
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 import { revalidatePath } from "next/cache"
 
 
@@ -11,7 +11,7 @@ export async function setFlashcardSetColor(deckTitle:string, userId:string, colo
 
 
 
-    const setFlashcardSetColor:any = await usePrismaClient().flashcardSet.update({
+    const setFlashcardSetColor:any = await prismaClient().flashcardSet.update({
         where: {
             authorId: userId,
             title: deckTitle

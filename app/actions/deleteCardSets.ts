@@ -1,12 +1,12 @@
 "use server"
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 
 
 
 export const deleteCardSets = async(cardSetTitle:string) => {
 
-    const cardSets = usePrismaClient().flashcardSet.delete({
+    const cardSets = prismaClient().flashcardSet.delete({
         where: {
             title: cardSetTitle
         }

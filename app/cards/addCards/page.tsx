@@ -16,6 +16,11 @@ import LearningModeGradient from "@/components/SVGs/LearningModeGradient";
 // TODO:
 // Focus the targetLanguageContent text window after every submit
 
+export interface PageProps {
+  params?: { [key: string]: string }; // Narrow down expected params
+  searchParams?: { [key: string]: string }; // Ensure proper type
+  cardSet?: string; // Explicitly allow cardSet if used
+}
 
 
 

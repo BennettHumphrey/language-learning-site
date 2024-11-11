@@ -1,6 +1,6 @@
 'use server'
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 
 
 
@@ -10,7 +10,7 @@ export async function setPreviousCardSet(userId:string, previousCardSet:string) 
 
 
 
-    const resetPreviousCardSet:any = await usePrismaClient().flashcardSet.updateMany({
+    const resetPreviousCardSet:any = await prismaClient().flashcardSet.updateMany({
         where: {
             previous: true
         },
@@ -19,7 +19,7 @@ export async function setPreviousCardSet(userId:string, previousCardSet:string) 
         },
       })
 
-    const setPreviousCardSet:any = await usePrismaClient().flashcardSet.update({
+    const setPreviousCardSet:any = await prismaClient().flashcardSet.update({
         where: {
             authorId: userId,
             title: previousCardSet

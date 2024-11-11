@@ -1,6 +1,6 @@
 "use server"
 
-import { usePrismaClient } from "@/prisma/prismaClient";
+import { prismaClient } from "@/prisma/prismaClient";
 
 
 
@@ -15,14 +15,14 @@ export const addUser = async (user:User) => {
 
     // console.log('addUser email:', user.email)
     let existingUser;
-    existingUser = await usePrismaClient().user.findUnique({
+    existingUser = await prismaClient().user.findUnique({
         where: {
             email: user.email
         }
     })
 
     if(!existingUser) {
-        existingUser = await usePrismaClient().user.create({
+        existingUser = await prismaClient().user.create({
             data: {
                 email: user.email,
                 name: user.name

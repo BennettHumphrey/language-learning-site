@@ -1,11 +1,11 @@
 "use server"
 
-import { usePrismaClient } from "@/prisma/prismaClient"
+import { prismaClient } from "@/prisma/prismaClient"
 
 
 
 export const getPreviousCardSet = async(userId:string) => {
-    const previousCardSet = await usePrismaClient().flashcardSet.findFirst({
+    const previousCardSet = await prismaClient().flashcardSet.findFirst({
         where: {
             authorId: userId,
             previous: true
